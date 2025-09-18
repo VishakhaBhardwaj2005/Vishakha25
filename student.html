@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Marks System</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    input, button {
+      margin: 5px;
+      padding: 5px;
+    }
+    table {
+      width: 50%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+    table, th, td {
+      border: 1px solid black;
+      text-align: center;
+      padding: 8px;
+    }
+    th {
+      background-color: lightgray;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Student Marks System</h2>
+
+  <input type="text" id="studentName" placeholder="Enter student name">
+  <input type="number" id="studentMarks" placeholder="Enter marks">
+  <button onclick="addStudent()">Add Marks</button>
+
+  <table id="marksTable">
+    <tr>
+      <th>Student Name</th>
+      <th>Marks</th>
+      <th>Action</th>
+    </tr>
+  </table>
+
+  <script>
+    function addStudent() {
+      let name = document.getElementById("studentName").value;
+      let marks = document.getElementById("studentMarks").value;
+
+      if (name === "" || marks === "") {
+        alert("Please enter both name and marks!");
+        return;
+      }
+
+      let table = document.getElementById("marksTable");
+      let row = table.insertRow();
+      let cell1 = row.insertCell(0);
+      let cell2 = row.insertCell(1);
+      let cell3 = row.insertCell(2);
+
+      cell1.innerHTML = name;
+      cell2.innerHTML = marks;
+      cell3.innerHTML = `<button onclick="deleteRow(this)">Delete</button>`;
+
+      // Clear inputs
+      document.getElementById("studentName").value = "";
+      document.getElementById("studentMarks").value = "";
+    }
+
+    function deleteRow(button) {
+      let row = button.parentNode.parentNode;
+      row.parentNode.removeChild(row);
+    }
+  </script>
+
+</body>
+</html>
